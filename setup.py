@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import os
 import platform
 
 if getattr(sys, 'version_info', (0, 0, 0)) < (2, 5, 0, 'final'):
