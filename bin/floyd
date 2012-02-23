@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # python 2.6+
 python -E -m floyd.__main__
