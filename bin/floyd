@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # python 2.6+
-python -E -m floyd.__main__
+python -E -m floyd.__main__ $*
 
 # python 2.5
 # @TODO implement python 2.5 compat
