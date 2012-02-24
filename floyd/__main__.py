@@ -4,5 +4,8 @@
   
 Module entry point
 """
+
+import sys
 import floyd.main
-floyd.main.run()
+
+floyd.main.Main(sys.argv)

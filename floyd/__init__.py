@@ -14,5 +14,5 @@ __url__ = 'http://github.com/nikcub/Floyd'
 __license__ = 'BSD'
 
 if __name__ == '__main__':
-  sys.exit(floyd.main.run())
+  sys.exit(floyd.main.Main())
 
