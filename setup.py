@@ -26,7 +26,9 @@ setup(
   author_email=floyd.__email__,
   license=floyd.__license__,
   install_requires=[
-    'jinja2'
+    'jinja2',
+    'markdown',
+    'yaml'
   ],
   packages=['floyd'],
   scripts=scripts,
