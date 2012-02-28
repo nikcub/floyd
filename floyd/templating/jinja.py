@@ -78,13 +78,8 @@ class JinjaEnviroment(jinja2.Environment):
       return os.path.normpath(os.path.join(parent, '..', template))
     elif parent.endswith('.html'):
       return template
-    else:
-      return "%s/%s" % (parent, template)
-    
-    # return template
-    # return template
-    # return os.path.normpath(os.path.join(parent, '..', template))
-    
+
+    return "%s/%s" % (parent, template)
 
 
 class MemcacheBytecodeCache(jinja2.BytecodeCache):
