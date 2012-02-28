@@ -76,6 +76,8 @@ class JinjaEnviroment(jinja2.Environment):
       return "%s:%s/%s" % (sep, parent, template)
     elif '/' in parent:
       return os.path.normpath(os.path.join(parent, '..', template))
+    elif parent.endswith('.html'):
+      return template
     else:
       return "%s/%s" % (parent, template)
     
@@ -184,6 +186,9 @@ def setup(template_paths={}, autoescape=False, cache_size=100, auto_reload=True,
   # if bytecode_cache and GAE_CACHE:
     # _jinja_env.bytecode_cache = GAEMemcacheBytecodeCache()
 
+  if type(template_paths) == type(''):
+    template_paths = {'site': template_paths}
+  
   if len(template_paths) < 1:
     logging.exception('Sketch: jinja.setup: no template sets configured')
     return False
@@ -207,7 +212,7 @@ def setup(template_paths={}, autoescape=False, cache_size=100, auto_reload=True,
   logging.error(_jinja_loaders)
 
 
-def render(template_name, vars={}, template_set='site', template_theme=None, template_extension='html'):
+def render(template_name, template_vars={}, template_set='site', template_theme=None, template_extension='html', template_content=None):
   """Given a template path, a template name and template variables
   will return rendered content using jinja2 library
   
@@ -236,7 +241,7 @@ def render(template_name, vars={}, template_set='site', template_theme=None, tem
   _template_name = "%s.%s" % (template_name, template_extension)
   template = _jinja_env.get_template(_template_name, parent=template_theme)
   
-  return template.render(vars)
+  return template.render(template_vars)
 
 
 def compile_file(env, src_path, dst_path, encoding='utf-8', base_dir=''):
