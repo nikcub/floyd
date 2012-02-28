@@ -6,12 +6,27 @@
 :license: new BSD, see LICENSE for more details.
 
 """
+
+VERSION = (0, 0, 3, 'alpha', 1)
+
 __clsname__ = 'floyd'
 __version__ = '0.0.3'
 __author__ = 'Nik Cubrilovic <nikcub@gmail.com>'
 __email__ = 'nikcub@gmail.com'
 __url__ = 'http://github.com/nikcub/Floyd'
 __license__ = 'BSD'
+
+def get_version(version=None):
+  if version is None:
+    version = VERSION
+  assert version[3] in ('alpha', 'beta', 'rc', 'final')
+  parts = 2 if version[2] == 0 else 3
+  main = '.'.join(str(x) for x in version[:parts])
+  sub = ''
+  if version[3] != 'final':
+    mapping = {'alpha': 'a', 'beta': 'b', 'rc': 'c'}
+    sub = mapping[version[3]] + str(version[4])
+  return main + sub
 
 if __name__ == '__main__':
   sys.exit(floyd.main.Main())
