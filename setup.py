@@ -14,22 +14,24 @@ scripts = ['bin/floyd']
 if os.name == 'nt':
   scripts.append('bin/floyd.bat')
 
+# version = __import__('floyd').get_version()
+
 setup(
-  name=floyd.__clsname__,
-  description=floyd.__doc__.split('\n\n')[0],
-  long_description=open('README.md').read(),
-  keywords='website, appengine, s3, cms, blog',
-  url=floyd.__url__,
-  platforms=['linux', 'osx', 'win32'],
-  version=floyd.__version__,
-  author=floyd.__author__,
-  author_email=floyd.__email__,
-  license=floyd.__license__,
-  install_requires=[
+  name = floyd.__clsname__,
+  description = floyd.__doc__.split('\n\n')[0],
+  long_description = open('README.md').read(),
+  keywords = 'website, appengine, s3, cms, blog',
+  url = floyd.__url__,
+  platforms = ['linux', 'osx', 'win32'],
+  version = floyd.__version__,
+  author = floyd.__author__,
+  author_email = floyd.__email__,
+  license = floyd.__license__,
+  install_requires = [
     'jinja2',
     'markdown',
     'yaml'
   ],
-  packages=['floyd'],
-  scripts=scripts,
+  packages = ['floyd'],
+  scripts = scripts,
 )
