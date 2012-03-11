@@ -1,20 +1,30 @@
 # Floyd
 
-A command-line static site generator for Google AppEngine and Amazon S3
+**This is a very early release**
+
+An advanced MVC CMS that generatess static sites for Google AppEngine and Amazon S3
 
 Usage: `floyd <sources> <outputdir>`
 
 # Features
 
+ * Full MVC - define your routes, controllers, etc. and then generate
+ * Full data model (eg. `floyd.db.Query('Posts').filter(post_type='page').order('-datetime').fetch()`)
+ * Data model reads from flat source files
  * Convert text, markdown or HTML pages into HTML output
  * Automatically configures AppEngine sites
- * Supports any templating engine (defaults jinja2)
+ * Supports different templating engine (defaults jinja2)
 
 # Install
 
     $ pip install -e git://github.com/nikcub/Floyd.git#egg=floyd
     $ cd /path/to/site
-    $ floyd sources/ ouput/
+    $ floyd create
+    [site created]
+    $ floyd generate
+    [site generated]
+    $ floyd deploy appengine
+    [site deployed] (in theory)
 
 # Google AppEngine Support
 
