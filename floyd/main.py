@@ -49,62 +49,29 @@ DEFAULT_ARGS = {
 }
 
 
+_DEFAULT_ROUTES = [
+  ('/', 'controllers.index'),
+  ('/archive', 'controllers.archive'),
+  ('/<stub>', 'controllers.page'),
+  ('/posts/<stub>', 'controllers.post')
+]
 
 # @TODO this can be a lot better
 _TITLE_MATCH = re.compile('<h1 id="title">(.*)</h1>')
 
 from optparse import OptionParser, NO_DEFAULT
 
-parser = OptionParser(usage="%prog [options] <sources> <output>", prog=floyd.__clsname__, version="floyd v%s" % (floyd.__version__))
+parser = OptionParser(usage="%prog [options]", prog=floyd.__clsname__, version="floyd v%s" % (floyd.__version__))
 # parser = argparse.ArgumentParser(description='Static website generator for cloud hosting platforms', epilog='Report any issues to [Github url]')
 parser.add_option('-s','--src', dest='src', type='string', default='sources', help='Project source ("src" by default)')
 parser.add_option('-d','--dir', dest='out', type='string', default='site', help='The directory in which to create site (creates in "site" by default)')
 parser.add_option('-t','--template', dest='template', type='string', default='default', help='Template to use (\'default\' by default)')
-# @TODO
-parser.add_option('-w','--watch', dest='out', type='string', default='site', help='Watch contents and automatically render and deploy')
+parser.add_option('-p', dest='pyfile', type='string', default='', help='read config from python file')
+# @TODO watcher
+# parser.add_option('-w','--watch', dest='out', type='string', default='site', help='Watch contents and automatically render and deploy')
 # @TODO local server
-# parser.add_option("--ignore-images", dest="ignore_images", action="store_true", default=False, help="don't include any formatting for images")
-# parser.add_option("-g", "--google-doc", action="store_true", dest="google_doc", default=False, help="convert an html-exported Google Document")
-# parser.add_option("-d", "--dash-unordered-list", action="store_true", dest="ul_style_dash", default=False, help="use a dash rather than a star for unordered list items")
-        
-def ParseArguments(argv):
-  user_options = DEFAULT_ARGS.copy()
+# parser.add_option('-s', '--server', dest='server', action='store_true', default=False, help='server')
 
-def PrintUsageExit(code=-1):
-  render_dict = DEFAULT_ARGS.copy()
-  render_dict['script'] = floyd.__clsname__
-  print sys.modules['__main__'].__doc__ % render_dict
-  sys.stdout.flush()
-  sys.exit(code)
-
-def TemplateVars(vars):
-  additional = {
-    'admin': False,
-    'user': None,
-    'logout': '/',
-    'login': '/',
-    'static_host': 'sketch-proto.appspot.com',
-    'css_file': 'nikcub.030.min.css',
-    'css_ver': '26',
-    'src': 'database',
-  }
-  return dict(zip(additional.keys() + vars.keys(), additional.values() + vars.values()))
-
-def RenderPosts(posts, outputdir):  
-  for post in posts:
-    print 'rendering -- %s' % post.stub
-    template_vars = {}
-    template_vars['posts'] = posts[:5]
-    template_vars['post'] = post
-    template_vars = TemplateVars(template_vars)
-    
-    render = floyd.templating.jinja.render('single', template_vars)
-    post_output_path = os.path.join(outputdir, post.stub)
-    print 'render: %s ' % post_output_path
-    fp = open(post_output_path, 'w')
-    fp.write(render)
-    fp.close()
-    
 def Main(argv):
   (options, args) = parser.parse_args()
   curdir = os.getcwd()
@@ -123,12 +90,24 @@ def Main(argv):
       parser.error('Not a valid template directory or template: %s' % path_templates)
 
     floyd.templating.jinja.setup(path_template)
-  
-    floyd.db.load_model_set(path_source)
-    posts = floyd.db.query('posts')
+    floyd.db.setup(path_source)
+
+    posts = floyd.db.Query('Posts').filter(post_type='post').filter(post_status='published').fetch(100)
+    drafts = floyd.db.Query('Posts').filter(post_type='post').filter(post_status='draft').fetch(100)
+    pages = floyd.db.Query('Posts').filter(post_type='page').fetch(100)
+
     
-    print "Got Posts:"
-    print posts
+    print "\nGot drafts: (%d)" % len(drafts)
+    for p in drafts:
+      print "%s - %s - %s"% (p.__key__, p.stub, p.title)
+          
+    print "\nGot Posts: (%d)" % len(posts)
+    for p in posts:
+      print "%s - %s - %s"% (p.__key__, p.stub, p.title)
+    
+    print "\nGot Pages: (%d)" % len(pages)
+    for p in pages:
+      print "%s - %s - %s" % (p.__key__, p.stub, p.title)
     
     # posts = GetPosts(os.path.join(path_source, 'posts'))
     RenderPosts(posts, path_output)
