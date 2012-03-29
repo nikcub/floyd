@@ -1,1 +1,6 @@
 .DS_Store
+PLAN
+*.egg
+*.egg-info
+*.pyc
+build
