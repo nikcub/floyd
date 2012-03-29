@@ -39,6 +39,17 @@ or for a command
 
     $ floyd help [command]
 
+# Upgrading to the latest stable release
+
+depends on your install method:
+
+    $ pip install --upgrade floyd
+
+    $ easy_install floyd
+
+    $ git pull upstream
+    $ python setup.py install
+
 # Latest Development Branch
 
 Using pip
