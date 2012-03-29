@@ -14,6 +14,8 @@ scripts = ['bin/floyd']
 if os.name == 'nt':
   scripts.append('bin/floyd.bat')
 
+# @TODO fix relative path in open('README.md')
+# need os.path.dirname(__file__), 'README.md'
 # version = __import__('floyd').get_version()
 
 setup(
