@@ -32,13 +32,22 @@ import re
 import getopt
 import logging
 import datetime
+import time
 import yaml
+
 import floyd
 
-import floyd.db
-import floyd.templating.jinja
+import floyd.app
 
-logging.basicConfig(level=logging.INFO)
+
+import floyd.commands
+# import floyd.util.const as const
+# import floyd.app.Command as Command
+from floyd.app import SubCommand, CommandOptions, GlobalCommand
+
+TIMER_START = time.time()
+
+VERBOSITY = 2
 
 ARG_SOURCE_DIR = 'source'
 ARG_OUTPUT_DIR = 'ouput'
@@ -56,73 +65,85 @@ _DEFAULT_ROUTES = [
   ('/posts/<stub>', 'controllers.post')
 ]
 
+_DEFAULT_GENERATOR = [
+  # (post.stub in floyd.db.Query('Posts').filter(post_type='post').filter(post_status='published').fetch(100))
+  # map(post, posts)
+  # or list expression
+  # [controllers.post(p, '/posts/<stub>') for p in posts]
+]
 # @TODO this can be a lot better
 _TITLE_MATCH = re.compile('<h1 id="title">(.*)</h1>')
 
-from optparse import OptionParser, NO_DEFAULT
 
-parser = OptionParser(usage="%prog [options]", prog=floyd.__clsname__, version="floyd v%s" % (floyd.__version__))
-# parser = argparse.ArgumentParser(description='Static website generator for cloud hosting platforms', epilog='Report any issues to [Github url]')
-parser.add_option('-s','--src', dest='src', type='string', default='sources', help='Project source ("src" by default)')
-parser.add_option('-d','--dir', dest='out', type='string', default='site', help='The directory in which to create site (creates in "site" by default)')
-parser.add_option('-t','--template', dest='template', type='string', default='default', help='Template to use (\'default\' by default)')
-parser.add_option('-p', dest='pyfile', type='string', default='', help='read config from python file')
-# @TODO watcher
-# parser.add_option('-w','--watch', dest='out', type='string', default='site', help='Watch contents and automatically render and deploy')
-# @TODO local server
-# parser.add_option('-s', '--server', dest='server', action='store_true', default=False, help='server')
+commands = {
+  '_global': GlobalCommand(
+    header="help header",
+    options=CommandOptions(
+      ["v", "verbose", bool, False], 
+      ["d", "debug", bool, False, "show debugz information"]
+    )
+  ),
+  
+  'help': SubCommand(
+    func=floyd.commands.help,
+    usage='%prog help [command]',
+    desc_short='print help for a command',
+    arguments=['command'],
+    options=CommandOptions(
+      
+    )),
+
+  'init': SubCommand(
+    func=floyd.commands.help,
+    usage='%prog init [options] <directory>',
+    desc_short='Initialize a new site directory',
+    desc_long="""
+Generates a new site with a template in directory
+specified by <directory> or by default in the
+current directory""",
+    options=CommandOptions(
+      ["t", "template", str, None, "use template directory"]
+    )),
+
+  'generate': SubCommand(
+    func=floyd.commands.help,
+    usage='%prog help [command]',
+    desc_short='Generate a new site'),
+
+  'deploy': SubCommand(
+    func=floyd.commands.help,
+    usage='%prog help [command]',
+    desc_short='Deploy a site'),
+
+  'serve': SubCommand(
+    func=floyd.commands.help,
+    usage='%prog help [command]',
+    desc_short='Run local server instance'),
+
+  'watch': SubCommand(
+    func=floyd.commands.help,
+    usage='%prog help [command]',
+    desc_short='Watch site and auto-deploy on save'),
+}
+
 
 def Main(argv):
-  (options, args) = parser.parse_args()
-  curdir = os.getcwd()
+  logging.basicConfig(level=logging.INFO)
+  
   try:
-    path_source = os.path.join(curdir, options.src)
-    path_output = os.path.join(curdir, options.out)
-    path_templates = os.path.join(curdir, 'templates')
-    template_name = options.template
-    path_template = os.path.join(path_templates, template_name)
+    app = floyd.app.ClApp(
+      argv=argv,
+      clsname=floyd.__clsname__,
+      version=floyd.__version__,
+      command_set=commands)
+    sys.exit(app.run())
+  except KeyboardInterrupt:
+    cl_error('Interrupted.')
+    sys.exit(1)
+
+def cl_error(msg=""):
+  if VERBOSITY > 1:
+    print >>sys.stderr, msg
     
-    if not os.path.isdir(path_source):
-      parser.error('Not a valid source directory: %s' % path_source)
-    if not os.path.isdir(path_output):
-      parser.error('Not a valid output directory: %s' % path_output)
-    if not os.path.isdir(path_template):
-      parser.error('Not a valid template directory or template: %s' % path_templates)
-
-    floyd.templating.jinja.setup(path_template)
-    floyd.db.setup(path_source)
-
-    posts = floyd.db.Query('Posts').filter(post_type='post').filter(post_status='published').fetch(100)
-    drafts = floyd.db.Query('Posts').filter(post_type='post').filter(post_status='draft').fetch(100)
-    pages = floyd.db.Query('Posts').filter(post_type='page').fetch(100)
-
-    
-    print "\nGot drafts: (%d)" % len(drafts)
-    for p in drafts:
-      print "%s - %s - %s"% (p.__key__, p.stub, p.title)
-          
-    print "\nGot Posts: (%d)" % len(posts)
-    for p in posts:
-      print "%s - %s - %s"% (p.__key__, p.stub, p.title)
-    
-    print "\nGot Pages: (%d)" % len(pages)
-    for p in pages:
-      print "%s - %s - %s" % (p.__key__, p.stub, p.title)
-    
-    # posts = GetPosts(os.path.join(path_source, 'posts'))
-    RenderPosts(posts, path_output)
-    
-  except ArgumentError as (errno, strerror):
-    print "Error: %s" % strerror
-    return -1
-
-
-
-class ArgumentError(Exception):
-  pass
-
 if __name__ == '__main__':
-  print sys.argv
-  sys.exit(Main(sys.argv))
-  
-  
+  Main(sys.argv)

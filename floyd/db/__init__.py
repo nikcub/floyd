@@ -127,9 +127,9 @@ class Model(object):
   
   def __init__(self, key, **kwargs):
     self.__key__ = key
-    for k in kwargs:
+    for k, v in kwargs.iteritems():
       if hasattr(self, k):
-        setattr(self, k, kwargs[k])
+        setattr(self, k, v)
       else:
         raise ModelAttributeError('Model %s: Not a valid field %s' % (self.__class__, k))
 
@@ -202,7 +202,9 @@ class Query(object):
   def sort_by(self, sb):
     """Sort results"""
     
-    return self.sort(key=lambda x: x.pubdate, reverse=True)
+    self._dataset = self._dataset.sort(key=lambda x: x.pubdate, reverse=True)
+    return self
+    # return self.sort(key=lambda x: x.pubdate, reverse=True)
     
   def __len__(self):
     return len(self._dataset)

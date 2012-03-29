@@ -13,8 +13,9 @@ __clsname__ = 'floyd'
 __version__ = '0.0.3'
 __author__ = 'Nik Cubrilovic <nikcub@gmail.com>'
 __email__ = 'nikcub@gmail.com'
-__url__ = 'http://github.com/nikcub/Floyd'
+__url__ = 'http://github.com/nikcub/floyd'
 __license__ = 'BSD'
+__copyright__ = 'Copyright (c) 2012, Nik Cubrilovic. All rights reserved.'
 
 def get_version(version=None):
   if version is None:

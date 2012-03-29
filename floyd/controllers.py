@@ -40,7 +40,22 @@ def RenderPosts(posts, outputdir):
     fp = open(post_output_path, 'w')
     fp.write(render)
     fp.close()
-    
+
+def post(post, route):
+  print "Rendering %s at %s" % (post.title, route)
+
+def page(post, route):
+  print "Rendering %s at %s" % (post.title, route)
+
+def index():
+  print 'index'
+
+def archive():
+  print 'archive'
+
+def feed():
+  print 'feed'
+
 def render(template_name, template_path, template_variables, output_file):
   template = os.path.join(template_path, template_name)
   
