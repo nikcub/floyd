@@ -1,8 +1,6 @@
-# Floyd
+# Floyd v0.0.3-alpha
 
-**This is a very early release**
-
-An advanced MVC CMS that generatess static sites for Google AppEngine and Amazon S3
+An advanced MVC CMS that generates static sites for Google AppEngine and Amazon S3
 
 Usage: `floyd <sources> <outputdir>`
 
@@ -17,7 +15,14 @@ Usage: `floyd <sources> <outputdir>`
 
 # Install
 
-    $ pip install -e git://github.com/nikcub/Floyd.git#egg=floyd
+    $ pip install floyd
+
+or if you don't have pip you can use easy_install (default on OS X and with python installations on other platforms)
+
+    $ easy_install floyd
+
+# Usage
+
     $ cd /path/to/site
     $ floyd create
     [site created]
@@ -25,6 +30,26 @@ Usage: `floyd <sources> <outputdir>`
     [site generated]
     $ floyd deploy appengine
     [site deployed] (in theory)
+
+# Help
+
+    $ floyd help
+
+or for a command
+
+    $ floyd help [command]
+
+# Latest Development Branch
+
+Using pip
+
+    $ pip install -e git://github.com/nikcub/Floyd.git#egg=floyd
+
+Or straight from the git repository:
+
+    $ git clone git://github.com/nikcub/Floyd floyd
+    $ cd floyd
+    $ python setup.py install
 
 # Google AppEngine Support
 
