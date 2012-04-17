@@ -23,7 +23,7 @@ if sys.argv[-1] == 'test':
   os.system('python test_floyd.py')
   sys.exit()
 
-scripts = ['bin/floyd']
+scripts = ['flask/bin/floyd']
 packages = [
   'jinja2',
   'markdown',
@@ -31,7 +31,7 @@ packages = [
 ]
 
 if os.name == 'nt':
-  scripts.append('bin/floyd.bat')
+  scripts.append('flask/bin/floyd.bat')
 
 def get_file_contents(file_path, curfile=__file__ or ''):
   """Get the context of the file using full path name"""
