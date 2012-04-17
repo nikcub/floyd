@@ -19,10 +19,6 @@ if sys.argv[-1] == 'publish':
   os.system('python setup.py sdist upload')
   sys.exit()
 
-if sys.argv[-1] == 'test':
-  os.system('python test_floyd.py')
-  sys.exit()
-
 scripts = ['flask/bin/floyd']
 packages = [
   'jinja2',
