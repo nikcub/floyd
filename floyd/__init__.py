@@ -7,10 +7,12 @@
 
 """
 
-VERSION = (0, 0, 3, 'alpha', 1)
+import sys
+
+VERSION = (0, 0, 3, 'alpha', 2)
 
 __clsname__ = 'floyd'
-__version__ = '0.0.3'
+__version__ = get_version()
 __author__ = 'Nik Cubrilovic <nikcub@gmail.com>'
 __email__ = 'nikcub@gmail.com'
 __url__ = 'http://github.com/nikcub/floyd'
