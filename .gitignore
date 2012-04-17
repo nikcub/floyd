@@ -4,3 +4,4 @@ PLAN
 *.egg-info
 *.pyc
 build
+dist
