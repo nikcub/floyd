@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# python 2.6+
+python -E -m floyd.__main__ $*
+
+# python 2.5
+# @TODO implement python 2.5 compat
+# python -E -m floyd
+# possibly do.. (but add import errors:)
+# python -c "import floyd; floyd.main()"
