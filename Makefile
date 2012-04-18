@@ -1,4 +1,4 @@
-.PHONY: clean
+.PHONY: clean test dist
 
 all: clean test
 
