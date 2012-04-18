@@ -8,16 +8,17 @@
 """
 
 import sys
+from floyd.core.command_utils import run_cl
 
 VERSION = (0, 0, 3, 'alpha', 2)
 
 __clsname__ = 'floyd'
-__version__ = get_version()
 __author__ = 'Nik Cubrilovic <nikcub@gmail.com>'
 __email__ = 'nikcub@gmail.com'
 __url__ = 'http://github.com/nikcub/floyd'
 __license__ = 'BSD'
 __copyright__ = 'Copyright (c) 2012, Nik Cubrilovic. All rights reserved.'
+
 
 def get_version(version=None):
   if version is None:
@@ -32,5 +33,5 @@ def get_version(version=None):
   return main + sub
 
 if __name__ == '__main__':
-  sys.exit(floyd.main.Main())
+  sys.exit(run_cl())
 

@@ -6,6 +6,6 @@ Module entry point
 """
 
 import sys
-import floyd.main
+from floyd.core.command_utils import run_cl
 
-floyd.main.Main(sys.argv)
+run_cl(sys.argv)
