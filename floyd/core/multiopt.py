@@ -8,7 +8,9 @@
 #
 #     http://nikcub.appspot.com/bsd-license
 #
-"""Floyd main application class
+"""Floyd - multiopt.py
+
+optparse extensions to support sub-commands and the 'help' command
 """
 
 import sys

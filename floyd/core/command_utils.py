@@ -10,6 +10,8 @@
 #     http://nikcub.appspot.com/bsd-license
 #
 """ floyd - command_utils.py
+
+Default command line utitlities to run floyd
 """
 
 import os
@@ -19,15 +21,6 @@ import logging
 import floyd.core.commands
 from floyd.core.multiopt import SubCommand, GlobalCommand, make_option
 
-VERBOSITY = 2
-
-ARG_SOURCE_DIR = 'source'
-ARG_OUTPUT_DIR = 'ouput'
-
-DEFAULT_ARGS = {
-  ARG_SOURCE_DIR: 'sources',
-  ARG_OUTPUT_DIR: 'site',
-}
 
 
 _DEFAULT_ROUTES = [
