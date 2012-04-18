@@ -10,7 +10,7 @@
 import sys
 from floyd.core.command_utils import run_cl
 
-VERSION = (0, 0, 3, 'alpha', 2)
+VERSION = (0, 0, 3, 'alpha', 7)
 
 __clsname__ = 'floyd'
 __author__ = 'Nik Cubrilovic <nikcub@gmail.com>'
