@@ -1,6 +1,6 @@
-# Floyd v0.0.3a11
+# Floyd v0.0.3a12
 
-Latest update: Wed Apr 18 20:26:46 EST 2012
+Latest update: Thu Apr 19 01:01:38 EST 2012
 
 An advanced MVC CMS that generates static sites for Google AppEngine and Amazon S3
 
