@@ -9,6 +9,13 @@
 #     http://nikcub.appspot.com/bsd-license
 #
 """Floyd commands
+
+The first argument is the command line options and the remaining function arguments
+are command line arguments as defined in the parser
+
+On a command error throw CommandError with a detailed description. This will refer
+the user to the help page
+
 """
 
 import os
@@ -19,13 +26,28 @@ import floyd.controllers
 
 from floyd.core.multiopt import CommandError
 
-def help():
-  print 'help command run..'
+def init(options, init_type=None, path='.'):
+  valid_inits = ['gae', 's3']
+  if not init_type in valid_inits:
+    raise CommandError("Type must be one of %s" % (", ".join(valid_inits)))
+  curdir = os.path.realpath(os.getcwd())
+  path_init = os.path.realpath(os.path.join(curdir, path))
+  
+  if not os.path.isdir(path_init):
+    raise CommandError("Not a valid init directory: %s" % path_init)
+    
+  print 'init command run.. %s' % path_init
+  # mkdir('sources')
+  # mkdir('sources', 'posts')
+  # mkdir('sources', 'pages')
+  # mkdir('site')
+  # mkdir('templates')
+  # touch('robots.txt')
+  # touch('favicon.ico')
   return 1
 
-def generate(options, source='sources', dest='site'):
-  print options
-  
+
+def generate(options, source='sources', dest='site'):  
   curdir = os.getcwd()
   path_source = os.path.join(curdir, source)
   path_output = os.path.join(curdir, dest)
@@ -47,12 +69,18 @@ def generate(options, source='sources', dest='site'):
   drafts = floyd.db.Query('Posts').filter(post_type='post').filter(post_status='draft').fetch(100)
   pages = floyd.db.Query('Posts').filter(post_type='page').fetch(100)
 
+def deploy(options):
+  print 'help command run..'
+  return 1
+
+def serve(options):
+  print 'help command run..'
+  return 1
+
+def watch(options):
+  print 'help command run..'
+  return 1
+
 def create_site():
-  # mkdir('sources')
-  # mkdir('sources', 'posts')
-  # mkdir('sources', 'pages')
-  # mkdir('site')
-  # mkdir('templates')
-  # touch('robots.txt')
-  # touch('favicon.ico')
+
   pass
