@@ -5,3 +5,4 @@ PLAN
 *.pyc
 build
 dist
+*.pyo
