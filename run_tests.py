@@ -3,6 +3,7 @@
 
 import os
 import sys
+from subprocess import Popen, call
 
 def patch_path():
   cur_dirname = os.path.dirname(__file__)
@@ -11,5 +12,4 @@ def patch_path():
   
 if __name__ == '__main__':
   patch_path()
-  import floyd
-  floyd.tests.main()
+  call(["python", "./floyd/tests/__init__.py"])

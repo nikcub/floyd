@@ -22,17 +22,17 @@ class CommandlineTests(unittest.TestCase):
   def test_cl_no_options(self):
     test_argv = []
     app = floyd.core.command_utils.run_cl(test_argv)
-    self.assert_equal(app, 2)
+    self.assertEquals(app, 2)
   
   def test_cl_invalid_option(self):
     test_argv = ['floyd', '-invalid_argument']
     app = floyd.core.command_utils.run_cl(test_argv)
-    self.assert_equal(app, 2)
+    self.assertEquals(app, 2)
 
   def test_cl_invalid_subcommand(self):
     test_argv = ['floyd', '_invalid_command']
     app = floyd.core.command_utils.run_cl(test_argv)
-    self.assert_equal(app, 2)
+    self.assertEquals(app, 2)
 
 class DefaultTests(unittest.TestCase):
   def setup(self):
@@ -41,17 +41,17 @@ class DefaultTests(unittest.TestCase):
   def test_cl_no_options(self):
     test_argv = []
     app = floyd.core.command_utils.run_cl(test_argv)
-    self.assert_equal(app, 2)
+    self.assertEquals(app, 2)
   
   def test_cl_invalid_option(self):
     test_argv = ['floyd', '-invalid_argument']
     app = floyd.core.command_utils.run_cl(test_argv)
-    self.assert_equal(app, 2)
+    self.assertEquals(app, 2)
 
   def test_cl_invalid_subcommand(self):
     test_argv = ['floyd', '_invalid_command']
     app = floyd.core.command_utils.run_cl(test_argv)
-    self.assert_equal(app, 2)
+    self.assertEquals(app, 2)
   
 def mksuite(test_class):
   return unittest.makeSuite(test_class)
@@ -62,4 +62,7 @@ def test_suite():
   return suite
 
 def main():
+  unittest.main(defaultTest='test_suite')
+
+if __name__ == '__main__': 
   unittest.main(defaultTest='test_suite')
