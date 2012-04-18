@@ -6,3 +6,4 @@ PLAN
 build
 dist
 *.pyo
+*.tmp
