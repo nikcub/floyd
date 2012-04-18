@@ -81,21 +81,21 @@ Generate from a site directory with config to an output directory using template
     options=[
     ]),
 
-  'serve': SubCommand(
-    func=floyd.core.commands.serve,
-    usage='%prog [options] serve <directory>',
-    desc_short='Run local server instance',
-    desc_long="""""",
-    options=[
-    ]),
-
-  'watch': SubCommand(
-    func=floyd.core.commands.watch,
-    usage='%prog [options] watch <directory>',
-    desc_short='Watch site and auto-deploy on publish',
-    options=[
-      make_option('-S', action="store_true", dest="onsave", help="deploy on save"),
-    ]),
+  # 'serve': SubCommand(
+  #   func=floyd.core.commands.serve,
+  #   usage='%prog [options] serve <directory>',
+  #   desc_short='Run local server instance',
+  #   desc_long="""""",
+  #   options=[
+  #   ]),
+  # 
+  # 'watch': SubCommand(
+  #   func=floyd.core.commands.watch,
+  #   usage='%prog [options] watch <directory>',
+  #   desc_short='Watch site and auto-deploy on publish',
+  #   options=[
+  #     make_option('-S', action="store_true", dest="onsave", help="deploy on save"),
+  #   ]),
 }
 
 
