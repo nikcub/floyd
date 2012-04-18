@@ -18,6 +18,7 @@ deploy:
 	git commit -am 'version ${VERSION}'
 	git tag ${VERSION}
 	git push origin ${VERSION}
+	git push origin master
 
 dist:
 	python setup.py publish
