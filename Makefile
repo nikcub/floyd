@@ -1,4 +1,4 @@
-VERSION=$(shell python -c "import floyd; print "v%s" % floyd.get_version()")
+VERSION=$(shell python -c "import floyd; print 'v%s' % floyd.get_version()")
 DATE=$(shell DATE)
 README=./docs/src/README.md
 
@@ -12,7 +12,7 @@ docs:
 
 build:
 	@@sed -e 's/@VERSION/'"${VERSION}"'/' -e 's/@DATE/'"${DATE}"'/' < ${README} > README.md; \
-	echo "Release v${VERSION} ${DATE} built";
+	echo "Release ${VERSION} ${DATE} built";
 
 deploy:
 	git commit -am 'version ${VERSION}'
