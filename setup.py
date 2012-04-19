@@ -29,14 +29,12 @@ packages = [
 if os.name == 'nt':
   scripts.append('flask/bin/floyd.bat')
 
-def get_file_contents(file_path, curfile=__file__ or ''):
+package_dir = os.path.realpath(os.path.dirname(curfile))
+
+def get_file_contents(file_path):
   """Get the context of the file using full path name"""
-  try:
-    full_path = os.path.join(os.path.realpath(os.path.dirname(curfile)), 
-                             file_path)
-    return open(full_path, 'r').read()
-  except (IOError, NameError, TypeError):
-    return ""
+  full_path = os.path.join(package_dir, file_path)
+  return open(full_path, 'r').read()
 
 setup(
   name = 'floyd',
