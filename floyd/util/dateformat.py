@@ -16,7 +16,7 @@ import time
 import calendar
 import time
 from datetime import tzinfo, timedelta
-from .unicode import force_unicode, force_utf8
+from floyd.util.unicode import force_unicode, force_utf8
 from floyd.util.dates import MONTHS, MONTHS_3, MONTHS_AP, WEEKDAYS, WEEKDAYS_ABBR
 from floyd.util.translation import ugettext as _
 

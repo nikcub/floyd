@@ -4,7 +4,6 @@
 """
 
 import sys
-from floyd.core.command_utils import run_cl
 
 VERSION = (0, 0, 3, 'alpha', 13)
 
@@ -29,5 +28,6 @@ def get_version(version=None):
   return main + sub
 
 if __name__ == '__main__':
+  from floyd.core.command_utils import run_cl
   sys.exit(run_cl())
 

@@ -19,17 +19,16 @@ if sys.argv[-1] == 'publish':
   os.system('python setup.py sdist upload')
   sys.exit()
 
-scripts = ['flask/bin/floyd']
+scripts = ['floyd/bin/floyd']
 packages = [
   'jinja2',
-  'markdown',
-  'yaml'
+  'markdown'
 ]
 
 if os.name == 'nt':
-  scripts.append('flask/bin/floyd.bat')
+  scripts.append('floyd/bin/floyd.bat')
 
-package_dir = os.path.realpath(os.path.dirname(curfile))
+package_dir = os.path.realpath(os.path.dirname(__file__))
 
 def get_file_contents(file_path):
   """Get the context of the file using full path name"""
