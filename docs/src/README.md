@@ -2,7 +2,7 @@
 
 Latest update: @DATE
 
-An advanced MVC CMS that generates static sites for Google AppEngine and Amazon S3
+Static website generator with MVC content system and built-in support for cloud hosting platforms
 
 Usage: `floyd <sources> <outputdir>`
 
