@@ -1,21 +1,17 @@
 #!/usr/bin/env python
 
-"""A command line static website generator for popular cloud hosting providers
-
-:copyright: Copyright (C) 2012 Nik Cubrilovic and others, see AUTHORS
-:license: new BSD, see LICENSE for more details.
-
+"""Static website generator with MVC content system and built-in support for cloud hosting platforms
 """
 
 import sys
 from floyd.core.command_utils import run_cl
 
-VERSION = (0, 0, 3, 'alpha', 12)
+VERSION = (0, 0, 3, 'alpha', 13)
 
 __clsname__ = 'floyd'
 __author__ = 'Nik Cubrilovic <nikcub@gmail.com>'
 __email__ = 'nikcub@gmail.com'
-__url__ = 'http://github.com/nikcub/floyd'
+__url__ = 'http://nikcub.github.com/floyd'
 __license__ = 'BSD'
 __copyright__ = 'Copyright (c) 2012, Nik Cubrilovic. All rights reserved.'
 

@@ -52,7 +52,7 @@ commands = {
 specified by <directory> or by default in the
 current directory
 
-'type' must be one of 'gae' for AppEngine or 's3' for Amazon S3""",
+'type' must be one of 'static', 'gae' for AppEngine or 's3' for Amazon S3""",
     options=[
     ]
   ),

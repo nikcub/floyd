@@ -27,7 +27,7 @@ import floyd.controllers
 from floyd.core.multiopt import CommandError
 
 def init(options, init_type=None, path='.'):
-  valid_inits = ['gae', 's3']
+  valid_inits = ['static', 'gae', 's3']
   if not init_type in valid_inits:
     raise CommandError("Type must be one of %s" % (", ".join(valid_inits)))
   curdir = os.path.realpath(os.getcwd())
