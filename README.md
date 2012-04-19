@@ -1,6 +1,6 @@
-# Floyd v0.0.3a13
+# Floyd v0.0.3a14
 
-Latest update: Fri Apr 20 04:16:16 EST 2012
+Latest update: Fri Apr 20 04:37:55 EST 2012
 
 Static website generator with MVC content system and built-in support for cloud hosting platforms
 
@@ -24,3 +24,6 @@ or if you don't have pip you can use easy_install (default on OS X and with pyth
     $ easy_install floyd
 
 For more information see INSTALL
+
+[![Build Status](https://secure.travis-ci.org/nikcub/floyd.png)](http://travis-ci.org/nikcub/floyd)
+

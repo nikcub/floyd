@@ -11,7 +11,8 @@ docs:
 	echo "Buildings docs";
 
 build:
-	@@sed -e 's/@VERSION/'"${VERSION}"'/' -e 's/@DATE/'"${DATE}"'/' < ${README} > README.md; \
+	@@sed -e 's/@VERSION/'"${VERSION}"'/' -e 's/@DATE/'"${DATE}"'/' < ${README} > README.md; 
+	@@echo "\n[![Build Status](https://secure.travis-ci.org/nikcub/floyd.png)](http://travis-ci.org/nikcub/floyd)\n" >> README.md;
 	echo "Release ${VERSION} ${DATE} built";
 
 deploy:
