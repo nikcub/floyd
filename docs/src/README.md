@@ -2,9 +2,11 @@
 
 Latest update: @DATE
 
+Release status: @STATUS
+
 Static website generator with MVC content system and built-in support for cloud hosting platforms
 
-Usage: `floyd <sources> <outputdir>`
+Usage: `floyd help`
 
 # Features
 

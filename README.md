@@ -1,10 +1,12 @@
 # Floyd v0.0.3a14
 
-Latest update: Fri Apr 20 04:37:55 EST 2012
+Latest update: Fri Apr 20 04:48:56 EST 2012
+
+Release status: alpha
 
 Static website generator with MVC content system and built-in support for cloud hosting platforms
 
-Usage: `floyd <sources> <outputdir>`
+Usage: `floyd help`
 
 # Features
 

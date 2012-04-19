@@ -1,4 +1,5 @@
 VERSION=$(shell python -c "import floyd; print 'v%s' % floyd.get_version()")
+STATUS=$(shell python -c "import floyd; print floyd.get_status()")
 DATE=$(shell DATE)
 README=./docs/src/README.md
 
@@ -11,7 +12,7 @@ docs:
 	echo "Buildings docs";
 
 build:
-	@@sed -e 's/@VERSION/'"${VERSION}"'/' -e 's/@DATE/'"${DATE}"'/' < ${README} > README.md; 
+	@@sed -e 's/@VERSION/'"${VERSION}"'/' -e 's/@DATE/'"${DATE}"'/' -e 's/@STATUS/'"${STATUS}"'/' < ${README} > README.md; 
 	@@echo "\n[![Build Status](https://secure.travis-ci.org/nikcub/floyd.png)](http://travis-ci.org/nikcub/floyd)\n" >> README.md;
 	echo "Release ${VERSION} ${DATE} built";
 

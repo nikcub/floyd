@@ -27,6 +27,12 @@ def get_version(version=None):
     sub = mapping[version[3]] + str(version[4])
   return main + sub
 
+def get_status(version=None):
+  if version is None:
+    version = VERSION
+  assert version[3] in ('alpha', 'beta', 'rc', 'final')
+  return version[3]
+
 if __name__ == '__main__':
   from floyd.core.command_utils import run_cl
   sys.exit(run_cl())
