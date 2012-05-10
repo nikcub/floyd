@@ -16,8 +16,6 @@
 #   Python Object Oriented Helper Functions
 #---------------------------------------------------------------------------
 
-import logging
-
 def hasmethod(obj, meth):
   """
     Checks if an object, obj, has a callable method, meth
@@ -57,6 +55,11 @@ def assure_obj_child_dict(obj, var):
   return obj
   
 
+class Bunch(dict):
+  def __init__(self, **kw):
+    dict.__init__(self, kw)
+    self.__dict__.update(kw)
+        
 class AccessibleDict(dict):
   dirty = True
 
@@ -151,6 +154,11 @@ class AttrDict(dict):
   def dirty():
     return self.__dirty__
 
+class RecursiveDict(dict):
+  """Implementation of perl's autovivification feature."""
+  def __missing__(self, key):
+    value = self[key] = type(self)()
+    return value
   
 from keyword import iskeyword 
 
