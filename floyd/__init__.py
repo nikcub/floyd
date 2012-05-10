@@ -5,7 +5,7 @@
 
 import sys
 
-VERSION = (0, 0, 3, 'alpha', 14)
+VERSION = (0, 0, 3, 'alpha', 15)
 
 __clsname__ = 'floyd'
 __author__ = 'Nik Cubrilovic <nikcub@gmail.com>'
