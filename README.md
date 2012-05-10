@@ -1,6 +1,6 @@
-# Floyd v0.0.3a14
+# Floyd v0.0.3a15
 
-Latest update: Fri Apr 20 04:48:56 EST 2012
+Latest update: Fri May 11 02:11:12 EST 2012
 
 Release status: alpha
 
