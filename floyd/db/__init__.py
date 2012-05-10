@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-"""Floyd
-  
-Datastore
+""" floyd - datastore
+
 """
 
 import os
