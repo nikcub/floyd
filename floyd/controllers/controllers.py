@@ -3,7 +3,7 @@ import os
 import sys
 import jinja2
 
-from templating import jinja
+import floyd.templating.jinja
 from floyd.util.timesince import timesince
 
 class BaseController(object):
