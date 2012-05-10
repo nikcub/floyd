@@ -25,23 +25,6 @@ from floyd.core.multiopt import MultioptParser, SubCommand, make_option
 
 
 
-_DEFAULT_ROUTES = [
-  ('/', 'controllers.index'),
-  ('/archive', 'controllers.archive'),
-  ('/<stub>', 'controllers.page'),
-  ('/posts/<stub>', 'controllers.post')
-]
-
-_DEFAULT_GENERATOR = [
-  # (post.stub in floyd.db.Query('Posts').filter(post_type='post').filter(post_status='published').fetch(100))
-  # map(post, posts)
-  # or list expression
-  # [controllers.post(p, '/posts/<stub>') for p in posts]
-]
-# @TODO this can be a lot better
-# _TITLE_MATCH = re.compile('<h1 id="title">(.*)</h1>')
-
-
 commands = {
 
   'init': SubCommand(
@@ -81,13 +64,15 @@ Generate from a site directory with config to an output directory using template
     options=[
     ]),
 
-  # 'serve': SubCommand(
-  #   func=floyd.core.commands.serve,
-  #   usage='%prog [options] serve <directory>',
-  #   desc_short='Run local server instance',
-  #   desc_long="""""",
-  #   options=[
-  #   ]),
+  'serve': SubCommand(
+    func=floyd.core.commands.serve,
+    usage='%prog [options] serve <directory>',
+    desc_short='Run local server instance',
+    desc_long="""""",
+    options=[
+      make_option('-p', action="store", default='8080', type="int", dest="port"),
+      make_option('-H', '--host', action="store", default='localhost', type="string", dest="host"),
+    ]),
   # 
   # 'watch': SubCommand(
   #   func=floyd.core.commands.watch,
